@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Kepuasan Pengguna</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f3f4f6;
+        }
+        .survey-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .question label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .rating {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .rating input[type="radio"] {
+            display: none;
+        }
+        .rating label {
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .rating input[type="radio"]:checked + label {
+            color: gold;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="survey-container">
+    <h2>Survey Kepuasan Pengguna</h2>
+    <form id="surveyForm">
+        <div class="question">
+            <label>Seberapa puas Anda dengan layanan kami?</label>
+            <div class="rating">
+                <input type="radio" name="satisfaction" value="1" id="rate1">
+                <label for="rate1">&#9733;</label>
+                <input type="radio" name="satisfaction" value="2" id="rate2">
+                <label for="rate2">&#9733;</label>
+                <input type="radio" name="satisfaction" value="3" id="rate3">
+                <label for="rate3">&#9733;</label>
+                <input type="radio" name="satisfaction" value="4" id="rate4">
+                <label for="rate4">&#9733;</label>
+                <input type="radio" name="satisfaction" value="5" id="rate5">
+                <label for="rate5">&#9733;</label>
+            </div>
+        </div>
+        <div class="question">
+            <label>Komentar atau saran:</label>
+            <textarea name="feedback" rows="4" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd;"></textarea>
+        </div>
+        <button type="button" onclick="submitSurvey()">Kirim</button>
+    </form>
+    <div id="responseMessage" style="margin-top: 20px; text-align: center;"></div>
+</div>
+
+<script>
+    function submitSurvey() {
+        const form = document.getElementById('surveyForm');
+        const satisfaction = form.satisfaction.value;
+        const feedback = form.feedback.value;
+
+        if (!satisfaction) {
+            alert("Silakan pilih tingkat kepuasan Anda.");
+            return;
+        }
+
+        const responseMessage = document.getElementById('responseMessage');
+        responseMessage.innerHTML = `
+            <p>Terima kasih atas tanggapan Anda!</p>
+            <p>Tingkat kepuasan: ${satisfaction} dari 5</p>
+            <p>Komentar Anda: ${feedback ? feedback : 'Tidak ada komentar.'}</p>
+        `;
+
+        form.reset();
+    }
+</script>
+
+</body>
+</html>
